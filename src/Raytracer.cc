@@ -600,7 +600,7 @@ public:
 	    if (finalColor._r>255.0f) finalColor._r=255.0f;
 	    if (finalColor._g>255.0f) finalColor._g=255.0f;
 	    if (finalColor._b>255.0f) finalColor._b=255.0f;
-	    canvas.DrawPixel(y,x, SDL_MapRGB(
+	    canvas.DrawPixel(y,x, fast_SDL_MapRGB(
 		canvas._surface->format, (Uint8)finalColor._r, (Uint8)finalColor._g, (Uint8)finalColor._b));
 	}
     }

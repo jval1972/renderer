@@ -17,6 +17,8 @@ LGPL (c) A. Schiffler
 
 #include <SDL.h>
 
+#include "sdl12compat_workaround.h"
+
 /* -===================- */
 
 #define DEFAULT_ALPHA_PIXEL_ROUTINE
@@ -84,7 +86,7 @@ static int _putPixelAlpha(SDL_Surface *dst, Sint16 x, Sint16 y, Uint32 color, Ui
 				dG = dG + ((sG - dG) * alpha >> 8);
 				dB = dB + ((sB - dB) * alpha >> 8);
 
-				*pixel = SDL_MapRGB(format, dR, dG, dB);
+				*pixel = fast_SDL_MapRGB(format, dR, dG, dB);
 			}
 		}
 		break;
@@ -359,7 +361,7 @@ static int _filledRectAlpha(SDL_Surface * dst, Sint16 x1, Sint16 y1, Sint16 x2, 
 					dG = dG + ((sG - dG) * alpha >> 8);
 					dB = dB + ((sB - dB) * alpha >> 8);
 
-					*pixel = SDL_MapRGB(format, dR, dG, dB);
+					*pixel = fast_SDL_MapRGB(format, dR, dG, dB);
 				}
 			}
 		}

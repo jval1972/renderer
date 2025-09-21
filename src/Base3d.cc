@@ -38,7 +38,7 @@ Triangle::Triangle(
 	    (vertexA->_z + vertexB->_z + vertexC->_z)/3.0f),
 
     _colorf((float)r,(float)g,(float)b), // For use in all other cases
-    _color(SDL_MapRGB(Screen::_surface->format, r,g,b)), // For use with DrawPixel
+    _color(fast_SDL_MapRGB(Screen::_surface->format, r,g,b)), // For use with DrawPixel
     _twoSided(twosided),
     _bottom(FLT_MAX,FLT_MAX,FLT_MAX), // Will be updated after centering in Loader
     _top(-FLT_MAX,-FLT_MAX,-FLT_MAX) // Will be updated after centering in Loader

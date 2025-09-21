@@ -34,7 +34,7 @@
 #include "Defines.h"
 #include "ScanConverter.h"
 #include "OnlineHelpKeys.h"
-
+#include "sdl12compat_workaround.h"
 #include "MLAA.h"
 
 #ifdef SIMD_SSE
@@ -119,7 +119,7 @@ struct Screen
     }
 
     void ClearScreen() {
-	Uint32 color = SDL_MapRGB(_surface->format, 0, 0, 0);
+	Uint32 color = fast_SDL_MapRGB(_surface->format, 0, 0, 0);
 	SDL_FillRect(_surface, NULL, color);
     }
 
@@ -150,7 +150,7 @@ struct Screen
 			    DrawPixel(
 				h + 20,
 				WIDTH-20-OHELPW + w,
-				SDL_MapRGB(_surface->format, 255-c, 255-c, 255-c));
+				fast_SDL_MapRGB(_surface->format, 255-c, 255-c, 255-c));
 		    }
 	    }
 	}
