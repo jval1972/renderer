@@ -37,7 +37,7 @@ void Screen::Plot(
 {
     // Normal ambient lighting: the per-pixel interpolated color is the
     // ambient occlusion factor times the triangle color (FillerAmbient)
-    DrawPixel(y,x,SDL_MapRGB(_surface->format,
+    DrawPixel(y,x,fast_SDL_MapRGB(_surface->format,
 		(unsigned char)v._color._r,
 		(unsigned char)v._color._g,
 		(unsigned char)v._color._b));
@@ -49,7 +49,7 @@ void Screen::Plot(
 {
     // Complete lighting equation (ambient + specular + diffuse) done in FillerGouraud.
     // Color is then interpolated per-pixel:
-    DrawPixel(y,x,SDL_MapRGB(_surface->format,
+    DrawPixel(y,x,fast_SDL_MapRGB(_surface->format,
 		(unsigned char)v._color._r,
 		(unsigned char)v._color._g,
 		(unsigned char)v._color._b));
@@ -87,7 +87,7 @@ Uint32 IlluminatePixel(
     Pixel color = Pixel(); // Start from complete darkness...
     typename ModeSpecificLighting<InterpolatedType>::ShadowModel compute(_scene);
     compute.ComputePixel( point, normal, tri.color, v._ambientOcclusionCoeff, color);
-    return SDL_MapRGB(_surface->format, (Uint8)color._r, (Uint8)color._g, (Uint8)color._b);
+    return fast_SDL_MapRGB(_surface->format, (Uint8)color._r, (Uint8)color._g, (Uint8)color._b);
 }
 
 template<>

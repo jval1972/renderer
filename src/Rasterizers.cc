@@ -56,7 +56,7 @@ void inline ProjectAndPlot(const Vector3& xformed, Uint32 color, Screen& canvas)
 void Scene::renderPoints(const Camera& eye, Screen& canvas, bool asTriangles)
 {
     canvas.ClearScreen();
-    Uint32 whitePixel = SDL_MapRGB(canvas._surface->format, 255,255,255);
+    Uint32 whitePixel = fast_SDL_MapRGB(canvas._surface->format, 255,255,255);
 
     if (!asTriangles) {
 	// Simple projection and ploting of a white point per vertex
@@ -118,7 +118,7 @@ void Scene::renderWireframe(const Camera& eye, Screen& canvas)
 {
     canvas.ClearScreen();
 
-    Uint32 greyPixel = SDL_MapRGB(canvas._surface->format, 200,200,200);
+    Uint32 greyPixel = fast_SDL_MapRGB(canvas._surface->format, 200,200,200);
     // Or maybe use... _triangles[j]._color
 
     // Perform culling, projection and use the triangle color

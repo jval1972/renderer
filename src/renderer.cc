@@ -141,7 +141,7 @@ void usage()
 void ShowHelp(Screen& canvas, Keyboard& keys)
 {
     assert(sizeof(helpKeysImage) == HELPW*HELPH*3);
-    Uint32 color = SDL_MapRGB(canvas._surface->format, 0, 0, 0);
+    Uint32 color = fast_SDL_MapRGB(canvas._surface->format, 0, 0, 0);
     SDL_FillRect(canvas._surface, NULL, color);
     unsigned char *pData = helpKeysImage;
     for(int h=0; h<HELPH; h++)
@@ -152,7 +152,7 @@ void ShowHelp(Screen& canvas, Keyboard& keys)
 	    canvas.DrawPixel(
 		(HEIGHT-HELPH)/2 + h,
 		(WIDTH-HELPW)/2 + w,
-		SDL_MapRGB(canvas._surface->format, r,g,b));
+		fast_SDL_MapRGB(canvas._surface->format, r,g,b));
 	}
     canvas.ShowScreen();
     keys.poll();
