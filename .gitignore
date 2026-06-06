@@ -88,3 +88,4 @@ contrib/bits
 configure.lineno
 compile_commands.json
 .cache
+src/link.for.Quest.sh
