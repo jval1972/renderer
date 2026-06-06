@@ -38,6 +38,7 @@
 #include "3d.h"
 #include "Defines.h"
 #include "Exceptions.h"
+#include "Scene.h"
 
 using std::string;
 
@@ -122,7 +123,7 @@ void Scene::load(const char *filename)
             if (!fp)
                 THROW((string("File '") + string(filename) + string("' not found!")).c_str());
 
-            Uint32 totalPoints = 0, totalTris = 0;
+            Uint32 totalPoints = 0;
             Uint32 magic;
 
             SAFE_FREAD(&magic, 1, sizeof(Uint32), fp);
@@ -214,7 +215,6 @@ void Scene::load(const char *filename)
                 }
 
                 totalPoints += noOfPoints;
-                totalTris   += noOfTris;
             } while(!feof(fp));
 
             fclose(fp);
@@ -358,10 +358,9 @@ void Scene::load(const char *filename)
                 THROW((string("Missing ")+string(filename)).c_str());
             }
             string line;
-            unsigned totalVertices=0, totalTriangles=0, lineNo=0;
+            unsigned totalVertices=0, totalTriangles=0;
             bool inside = false;
             while(getline(file, line)) {
-                lineNo++;
                 if (!inside) {
                     if (line.substr(0, 14) == "element vertex") {
                         std::istringstream str(line);
